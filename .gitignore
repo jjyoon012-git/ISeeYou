@@ -58,3 +58,6 @@ data/
 Thumbs.db
 .idea/
 .vscode/
+Extension/chrome-local-profile/
+Extension/*-server-*.log
+Extension/*-server-*.err.log
