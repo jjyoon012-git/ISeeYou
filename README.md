@@ -31,7 +31,13 @@ ISeeYou/
 5. 프론트엔드 실행하기
 6. Chrome 확장프로그램 실행하기
 
-## 3. 준비물
+## 3. 경로 표기 규칙
+
+README의 \`<ISeeYou 프로젝트 루트>\`는 팀원이 각자 GitHub 저장소를 clone한 로컬 폴더를 의미합니다. 예를 들어 바탕화면에 clone했다면 \`C:\\Users\\<사용자명>\\Desktop\\ISeeYou\`가 될 수 있고, 다른 드라이브에 받았다면 그 경로를 사용하면 됩니다.
+
+아래 명령은 모두 \`<ISeeYou 프로젝트 루트>\` 기준으로 실행하거나, 해당 하위 폴더로 이동해서 실행합니다.
+
+## 4. 준비물
 
 - Python 3.10 권장
 - Node.js / npm
@@ -45,7 +51,7 @@ Hugging Face CLI 설치:
 python -m pip install -U huggingface_hub
 ~~~
 
-## 4. 코드 받기
+## 5. 코드 받기
 
 처음 받는 경우:
 
@@ -57,11 +63,11 @@ cd ISeeYou
 이미 받은 폴더가 있는 경우:
 
 ~~~powershell
-cd C:\Users\jjeong\Desktop\ISeeYou
+cd <ISeeYou 프로젝트 루트>
 git pull
 ~~~
 
-## 5. 모델은 Hugging Face에서 받기
+## 6. 모델은 Hugging Face에서 받기
 
 모델 가중치와 대용량 바이너리는 GitHub에 포함하지 않습니다. 현재 웹페이지와 Chrome 확장프로그램 실제 서버 전환에 필요한 모델 아티팩트는 아래 Hugging Face 저장소에 있습니다.
 
@@ -73,8 +79,8 @@ git pull
 프로젝트 루트에서 다운로드합니다.
 
 ~~~powershell
-cd C:\Users\jjeong\Desktop\ISeeYou
-hf download yoonjeongah/ISeeYou-model-weights --repo-type model --local-dir .\_model_artifacts
+cd <ISeeYou 프로젝트 루트>
+hf download yoonjeongah/ISeeYou-model-weights --repo-type model --local-dir .\\_model_artifacts
 ~~~
 
 다운로드 후 구조는 다음과 같습니다.
@@ -90,52 +96,52 @@ _model_artifacts/
     └── Multimodal/
 ~~~
 
-## 6. 모델 파일 로컬 배치
+## 7. 모델 파일 로컬 배치
 
 다운로드한 모델 파일을 현재 코드가 참조하는 위치로 복사합니다.
 
 ~~~powershell
-cd C:\Users\jjeong\Desktop\ISeeYou
+cd <ISeeYou 프로젝트 루트>
 
 # Image
-New-Item -ItemType Directory -Force -Path "AI\Image\models\image_model_bundle\이미지모델_이원석" | Out-Null
-New-Item -ItemType Directory -Force -Path "AI\Image\models\image_model_bundle\0501_데모버전\weights" | Out-Null
-Copy-Item "_model_artifacts\web\Image\scene\best_dualstream_final.pt" "AI\Image\models\image_model_bundle\이미지모델_이원석\best_dualstream_final.pt" -Force
-Copy-Item "_model_artifacts\web\Image\face\best.pt" "AI\Image\models\image_model_bundle\0501_데모버전\weights\best.pt" -Force
+New-Item -ItemType Directory -Force -Path "AI\\Image\\models\\image_model_bundle\\이미지모델_이원석" | Out-Null
+New-Item -ItemType Directory -Force -Path "AI\\Image\\models\\image_model_bundle\\0501_데모버전\\weights" | Out-Null
+Copy-Item "_model_artifacts\\web\\Image\\scene\\best_dualstream_final.pt" "AI\\Image\\models\\image_model_bundle\\이미지모델_이원석\\best_dualstream_final.pt" -Force
+Copy-Item "_model_artifacts\\web\\Image\\face\\best.pt" "AI\\Image\\models\\image_model_bundle\\0501_데모버전\\weights\\best.pt" -Force
 
 # Text
-New-Item -ItemType Directory -Force -Path "AI\Text\models\text_model_bundle" | Out-Null
-Copy-Item "_model_artifacts\web\Text\LOG_AID_ko" "AI\Text\models\text_model_bundle\LOG_AID_ko" -Recurse -Force
-Copy-Item "_model_artifacts\web\Text\DeBERTa_En" "AI\Text\models\text_model_bundle\DeBERTa_En" -Recurse -Force
+New-Item -ItemType Directory -Force -Path "AI\\Text\\models\\text_model_bundle" | Out-Null
+Copy-Item "_model_artifacts\\web\\Text\\LOG_AID_ko" "AI\\Text\\models\\text_model_bundle\\LOG_AID_ko" -Recurse -Force
+Copy-Item "_model_artifacts\\web\\Text\\DeBERTa_En" "AI\\Text\\models\\text_model_bundle\\DeBERTa_En" -Recurse -Force
 
 # Video
-New-Item -ItemType Directory -Force -Path "AI\Video\models\video" | Out-Null
-Copy-Item "_model_artifacts\web\Video\*" "AI\Video\models\video" -Recurse -Force
+New-Item -ItemType Directory -Force -Path "AI\\Video\\models\\video" | Out-Null
+Copy-Item "_model_artifacts\\web\\Video\\*" "AI\\Video\\models\\video" -Recurse -Force
 
 # Multimodal
-New-Item -ItemType Directory -Force -Path "AI\Multimodal\models" | Out-Null
-Copy-Item "_model_artifacts\web\Multimodal\_service_runtime_bundle_v4b.pt" "AI\Multimodal\models\_service_runtime_bundle_v4b.pt" -Force
+New-Item -ItemType Directory -Force -Path "AI\\Multimodal\\models" | Out-Null
+Copy-Item "_model_artifacts\\web\\Multimodal\\_service_runtime_bundle_v4b.pt" "AI\\Multimodal\\models\\_service_runtime_bundle_v4b.pt" -Force
 ~~~
 
 Chrome 확장프로그램을 mock 서버가 아니라 실제 모델 서버로 실행할 경우에는 Extension 쪽에도 필요한 가중치를 배치합니다.
 
 ~~~powershell
-cd C:\Users\jjeong\Desktop\ISeeYou
+cd <ISeeYou 프로젝트 루트>
 
-New-Item -ItemType Directory -Force -Path "Extension\versionv9\weights" | Out-Null
-Copy-Item "_model_artifacts\web\Image\face\best.pt" "Extension\versionv9\weights\best.pt" -Force
+New-Item -ItemType Directory -Force -Path "Extension\\versionv9\\weights" | Out-Null
+Copy-Item "_model_artifacts\\web\\Image\\face\\best.pt" "Extension\\versionv9\\weights\\best.pt" -Force
 
-New-Item -ItemType Directory -Force -Path "Extension\video" | Out-Null
-Copy-Item "_model_artifacts\web\Video\*" "Extension\video" -Recurse -Force
+New-Item -ItemType Directory -Force -Path "Extension\\video" | Out-Null
+Copy-Item "_model_artifacts\\web\\Video\\*" "Extension\\video" -Recurse -Force
 ~~~
 
-## 7. 웹 백엔드 실행
+## 8. 웹 백엔드 실행
 
 프로젝트 루트에서 실행합니다.
 
 ~~~powershell
-cd C:\Users\jjeong\Desktop\ISeeYou
-python AI\Multimodal\inference\multimodal_inference_server.py
+cd <ISeeYou 프로젝트 루트>
+python AI\\Multimodal\\inference\\multimodal_inference_server.py
 ~~~
 
 기본 API 주소:
@@ -147,14 +153,14 @@ http://127.0.0.1:8001
 PowerShell 실행 스크립트를 사용할 수도 있습니다.
 
 ~~~powershell
-cd C:\Users\jjeong\Desktop\ISeeYou\AI\Multimodal\inference
-powershell -ExecutionPolicy Bypass -File .\start_multimodal_backend.ps1
+cd <ISeeYou 프로젝트 루트>\\AI\\Multimodal\\inference
+powershell -ExecutionPolicy Bypass -File .\\start_multimodal_backend.ps1
 ~~~
 
-## 8. 프론트엔드 실행
+## 9. 프론트엔드 실행
 
 ~~~powershell
-cd C:\Users\jjeong\Desktop\ISeeYou\UI
+cd <ISeeYou 프로젝트 루트>\\UI
 npm install
 npm run dev -- --host 127.0.0.1 --port 5174 --strictPort
 ~~~
@@ -170,19 +176,19 @@ http://127.0.0.1:5174
 빌드 확인:
 
 ~~~powershell
-cd C:\Users\jjeong\Desktop\ISeeYou\UI
+cd <ISeeYou 프로젝트 루트>\\UI
 npm run build
 ~~~
 
-## 9. Chrome 확장프로그램 실행
+## 10. Chrome 확장프로그램 실행
 
-### 9-1. 확장용 로컬 서버 실행
+### 10-1. 확장용 로컬 서버 실행
 
 현재 로컬 테스트는 Extension/mock_server.py로 확장 UI와 페이지 배지 흐름을 확인할 수 있습니다.
 
 ~~~powershell
-cd C:\Users\jjeong\Desktop\ISeeYou\Extension
-powershell -ExecutionPolicy Bypass -File .\start_extension_mock_server.ps1
+cd <ISeeYou 프로젝트 루트>\\Extension
+powershell -ExecutionPolicy Bypass -File .\\start_extension_mock_server.ps1
 ~~~
 
 기본 주소:
@@ -193,7 +199,7 @@ http://127.0.0.1:8000
 
 실제 모델 서버로 전환하려면 Extension/server.py를 실행하고, Extension/versionv9/weights와 Extension/video/checkpoints_* 아래에 필요한 best.pt를 배치해야 합니다.
 
-### 9-2. Chrome에 확장 로드
+### 10-2. Chrome에 확장 로드
 
 1. Chrome에서 chrome://extensions 열기
 2. 개발자 모드 켜기
@@ -201,7 +207,7 @@ http://127.0.0.1:8000
 4. 아래 폴더 선택
 
 ~~~text
-C:\Users\jjeong\Desktop\ISeeYou\Extension\extension
+<ISeeYou 프로젝트 루트>\\Extension\\extension
 ~~~
 
 테스트 페이지:
@@ -212,7 +218,7 @@ http://localhost:8000/demo/browse
 
 확장프로그램을 새로 로드한 뒤에는 기존 페이지를 새로고침해야 content script가 다시 주입됩니다.
 
-## 10. 현재 구현된 분석 모드
+## 11. 현재 구현된 분석 모드
 
 | 모드 | 현재 상태 | XAI 설명 방식 |
 |---|---|---|
@@ -221,7 +227,7 @@ http://localhost:8000/demo/browse
 | Video | 7개 비디오 모델 앙상블 | 프레임 단위 점수, 의심 구간 타임라인, 모델 의견 일치/불일치 |
 | Multimodal | 여러 모달리티 신호 통합 | 모달리티별 점수, 신뢰도 낮은 입력의 영향 축소, 최종 fusion 근거 |
 
-## 11. 모델 버전 메모
+## 12. 모델 버전 메모
 
 2026-05-18 기준 서비스 연결 멀티모달 모델은 final5000_gpu_anchor_fusion_v4b 기반 runtime bundle입니다.
 
@@ -233,7 +239,7 @@ http://localhost:8000/demo/browse
 
 final8000 계열 학습은 일부 base 모델 중간 결과만 확인되었고, AV-sync 및 최종 fusion 산출물이 완전히 확인되지 않았기 때문에 현재 서비스에는 v4b bundle을 연결했습니다.
 
-## 12. 주의사항
+## 13. 주의사항
 
 - 실제 모델 로직과 백엔드 API 경로는 임의로 바꾸지 않습니다.
 - .env, API key, token, private key는 GitHub와 Hugging Face에 올리지 않습니다.
@@ -242,24 +248,24 @@ final8000 계열 학습은 일부 base 모델 중간 결과만 확인되었고, 
 - 새 모델로 교체할 때는 MODEL_ARTIFACTS.md에 모델명, 경로, 성능, 교체 사유를 기록합니다.
 - README에 아직 구현되지 않은 기능을 구현된 것처럼 쓰지 않습니다.
 
-## 13. 빠른 실행 요약
+## 14. 빠른 실행 요약
 
 ~~~powershell
 # 모델 다운로드
-cd C:\Users\jjeong\Desktop\ISeeYou
-hf download yoonjeongah/ISeeYou-model-weights --repo-type model --local-dir .\_model_artifacts
+cd <ISeeYou 프로젝트 루트>
+hf download yoonjeongah/ISeeYou-model-weights --repo-type model --local-dir .\\_model_artifacts
 
 # 백엔드
-python AI\Multimodal\inference\multimodal_inference_server.py
+python AI\\Multimodal\\inference\\multimodal_inference_server.py
 
 # 프론트엔드
-cd C:\Users\jjeong\Desktop\ISeeYou\UI
+cd <ISeeYou 프로젝트 루트>\\UI
 npm install
 npm run dev -- --host 127.0.0.1 --port 5174 --strictPort
 
 # 확장 서버
-cd C:\Users\jjeong\Desktop\ISeeYou\Extension
-powershell -ExecutionPolicy Bypass -File .\start_extension_mock_server.ps1
+cd <ISeeYou 프로젝트 루트>\\Extension
+powershell -ExecutionPolicy Bypass -File .\\start_extension_mock_server.ps1
 ~~~
 
 웹 접속:
