@@ -48,6 +48,11 @@ npm run dev -- --host 127.0.0.1 --port 5174 --strictPort
 | Video | 7개 EfficientNet-B0 계열 모델이 대표 프레임을 앙상블 분석 | 프레임별 generated 확률, 모델 의견 매트릭스, 의심 프레임 설명 |
 | Multimodal | Visual, Audio/Sync, Text, Frequency, Scene graph 등 6개 계열 신호를 융합 | 모달리티별 점수, gate/down-weight, fusion logic, 타임라인 근거 |
 
+
+## Chrome Extension
+
+`Extension/` 폴더에는 Chrome Manifest V3 기반 ISeeYou 확장 프로그램과 확장 전용 FastAPI 서버가 포함되어 있습니다. 확장 프로그램은 현재 `http://localhost:8000`의 `/api/analyze/*` 엔드포인트를 호출하며, 웹 UI용 통합 백엔드(`8001`)와는 엔드포인트 구성이 다릅니다. 자세한 연동 상태와 실행 방법은 `Extension/INTEGRATION_NOTES.md`를 참고하세요.
+
 ## 모델 파라미터 상태
 
 - 2026-05-18 기준 멀티모달 서비스 연결은 `final5000_gpu_anchor_fusion_v4b` 기준 런타임 번들입니다.

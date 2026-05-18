@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DEMO</title>
+  <link rel="stylesheet" href="/demo/static/demo.css">
+</head>
+<body>
+
+  <header class="yt-header">
+    <div class="yt-header-left">
+      <button class="yt-icon-btn" aria-label="메뉴">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+      </button>
+      <a class="yt-logo" href="/demo/browse">
+        <svg width="32" height="22" viewBox="0 0 32 22" fill="none" aria-hidden="true">
+          <rect width="32" height="22" rx="5" fill="#FF0000"/>
+          <path d="M12 6.5L22 11L12 15.5V6.5Z" fill="white"/>
+        </svg>
+        <span class="yt-logo-text">DEMO</span>
+        <span class="yt-logo-isy">
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+          ISY 검증
+        </span>
+      </a>
+    </div>
+
+    <div class="yt-header-center">
+      <div class="yt-search">
+        <input type="search" placeholder="검색" aria-label="검색">
+        <button class="yt-search-btn" aria-label="검색 실행">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="yt-header-right">
+      <a href="/demo/upload" class="yt-upload-nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+        </svg>
+        업로드
+      </a>
+      <div class="yt-avatar" title="DEMO 계정">D</div>
+    </div>
+  </header>
+
+  <div class="yt-body">
+    <nav class="yt-sidebar">
+      <a class="yt-nav-item active" href="/demo/browse">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        홈
+      </a>
+      <a class="yt-nav-item" href="/demo/browse">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.77 10.32l-1.2-.5L18 9.06c1.84-.97 2.56-3.23 1.59-5.07-1-1.84-3.23-2.53-5.07-1.56L6 6.94c-1.29.68-2.07 2.04-2 3.49.07 1.42.93 2.67 2.22 3.25l1.2.5L6 14.94c-1.84.97-2.56 3.23-1.59 5.07.97 1.84 3.22 2.55 5.07 1.56l8.51-4.5c1.29-.68 2.07-2.04 2-3.49-.07-1.42-.93-2.68-2.22-3.26zM10 14.45v-5l5 2.5-5 2.5z"/></svg>
+        Shorts
+      </a>
+      <div class="yt-sidebar-section">
+        <div class="yt-sidebar-label">ISY 파트너</div>
+        <a class="yt-nav-item" href="/demo/browse">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+          ISY 검증 채널
+        </a>
+      </div>
+      <div class="yt-sidebar-section">
+        <a class="yt-nav-item" href="/demo/upload">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          크리에이터 업로드
+        </a>
+      </div>
+    </nav>
+
+    <main class="yt-main">
+      <div class="yt-chips">
+        <button class="yt-chip active">전체</button>
+        <button class="yt-chip">AI 생성</button>
+        <button class="yt-chip">정상</button>
+        <button class="yt-chip">최신</button>
+        <button class="yt-chip">인기</button>
+        <button class="yt-chip">DEMO Creator</button>
+      </div>
+      <div id="video-grid" class="yt-video-grid">
+        <p class="yt-empty">영상을 불러오는 중입니다...</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="/demo/static/utils.js"></script>
+  <script src="/demo/static/browse.js"></script>
+</body>
+</html>

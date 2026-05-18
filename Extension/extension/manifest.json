@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "I See You - AI Content Detector",
+  "version": "0.3.0",
+  "description": "멀티모달 기반 AI 생성 콘텐츠 실시간 탐지 도구",
+
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "contextMenus"
+  ],
+
+  "host_permissions": [
+    "http://localhost:8000/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "lib/namespace.js",
+        "lib/site-adapters.js",
+        "lib/media-extractor.js",
+        "lib/badge-manager.js",
+        "lib/ui-manager.js",
+        "lib/observer.js",
+        "content.js"
+      ],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/iseeyou16.png",
+      "48": "icons/iseeyou48.png",
+      "128": "icons/iseeyou128.png"
+    },
+    "default_title": "I See You - AI 콘텐츠 검증"
+  },
+
+  "icons": {
+    "16": "icons/iseeyou16.png",
+    "48": "icons/iseeyou48.png",
+    "128": "icons/iseeyou128.png"
+  }
+}

@@ -1,0 +1,746 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  color-scheme: dark;
+  --bg:              #0f0f0f;
+  --header-bg:       #212121;
+  --surface:         #272727;
+  --surface-hover:   #3d3d3d;
+  --text:            #f1f1f1;
+  --subtext:         #aaaaaa;
+  --border:          #3d3d3d;
+  --chip-bg:         #3d3d3d;
+  --chip-active-bg:  #f1f1f1;
+  --chip-active-text:#0f0f0f;
+  --primary:         #3ea6ff;
+
+  --high:            #f97316;
+  --high-dim:        #fdba74;
+  --high-bg:         rgba(249,115,22,0.10);
+  --high-border:     rgba(249,115,22,0.30);
+  --low:             #14b8a6;
+  --low-dim:         #5eead4;
+  --low-bg:          rgba(20,184,166,0.10);
+  --low-border:      rgba(20,184,166,0.30);
+  --uncertain:       #eab308;
+  --uncertain-dim:   #fde68a;
+  --uncertain-bg:    rgba(234,179,8,0.10);
+  --uncertain-border:rgba(234,179,8,0.30);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ─── YouTube Header ─── */
+.yt-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--header-bg);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.yt-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  min-width: 200px;
+}
+
+.yt-header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.yt-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  min-width: 200px;
+  justify-content: flex-end;
+}
+
+/* 아이콘 버튼 */
+.yt-icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.yt-icon-btn:hover { background: rgba(255,255,255,0.10); }
+
+/* 로고 */
+.yt-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--text);
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+.yt-logo:hover { background: rgba(255,255,255,0.08); }
+
+.yt-logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.yt-logo-isy {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #93c5fd;
+  background: rgba(37,99,235,0.18);
+  border: 1px solid rgba(37,99,235,0.30);
+  border-radius: 3px;
+  padding: 2px 5px;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+/* 검색창 */
+.yt-search {
+  display: flex;
+  width: 100%;
+  max-width: 560px;
+  height: 40px;
+}
+
+.yt-search input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid #3d3d3d;
+  border-right: none;
+  border-radius: 40px 0 0 40px;
+  color: var(--text);
+  font-size: 15px;
+  padding: 0 16px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.yt-search input::placeholder { color: var(--subtext); }
+.yt-search input:focus { border-color: #1c62b9; }
+
+.yt-search-btn {
+  width: 64px;
+  background: #3d3d3d;
+  border: 1px solid #3d3d3d;
+  border-radius: 0 40px 40px 0;
+  cursor: pointer;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.yt-search-btn:hover { background: #4d4d4d; }
+
+/* 헤더 업로드 버튼 */
+.yt-upload-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 18px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.yt-upload-nav-btn:hover { background: rgba(255,255,255,0.08); }
+
+/* 아바타 */
+.yt-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #5f6368;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* ─── Body Layout ─── */
+.yt-body {
+  display: flex;
+  min-height: calc(100vh - 56px);
+}
+
+/* ─── Sidebar ─── */
+.yt-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  padding: 12px 0;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.yt-sidebar::-webkit-scrollbar { display: none; }
+
+.yt-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 12px;
+  height: 40px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 8px;
+  transition: background 0.1s;
+  white-space: nowrap;
+}
+.yt-nav-item:hover { background: rgba(255,255,255,0.10); }
+.yt-nav-item.active { background: rgba(255,255,255,0.15); font-weight: 600; }
+.yt-nav-item svg { flex-shrink: 0; }
+
+.yt-sidebar-section {
+  border-top: 1px solid var(--border);
+  margin: 12px 8px;
+  padding-top: 12px;
+}
+
+.yt-sidebar-label {
+  padding: 0 12px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 8px 4px;
+}
+
+/* ─── Main ─── */
+.yt-main {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 24px 48px;
+}
+
+/* ─── Category Chips ─── */
+.yt-chips {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.yt-chips::-webkit-scrollbar { display: none; }
+
+.yt-chip {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--chip-bg);
+  color: var(--text);
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.1s;
+}
+.yt-chip.active { background: var(--chip-active-bg); color: var(--chip-active-text); }
+.yt-chip:hover:not(.active) { background: #4d4d4d; }
+
+/* ─── Video Grid ─── */
+.yt-video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px 16px;
+}
+
+.yt-empty {
+  color: var(--subtext);
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 0;
+  font-size: 15px;
+}
+
+/* ─── Video Card ─── */
+.yt-card { cursor: pointer; }
+
+.yt-card-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.yt-card-thumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ISY 오버레이 (hover 시) */
+.yt-card-isy {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.82);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: opacity 0.15s, transform 0.15s;
+  white-space: nowrap;
+}
+.yt-card:hover .yt-card-isy { opacity: 1; transform: translateY(0); }
+
+.yt-card-meta {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.yt-channel-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #5f6368;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.yt-card-info { flex: 1; min-width: 0; }
+
+.yt-card-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.yt-card-channel { font-size: 13px; color: var(--subtext); margin-bottom: 2px; }
+.yt-card-stats   { font-size: 12px; color: var(--subtext); }
+
+/* ISY 도트 */
+.isy-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.level-high      .isy-dot { background: var(--high);      box-shadow: 0 0 4px rgba(249,115,22,0.6); }
+.level-uncertain .isy-dot { background: var(--uncertain);  box-shadow: 0 0 4px rgba(234,179,8,0.6);  }
+.level-low       .isy-dot { background: var(--low);        box-shadow: 0 0 4px rgba(20,184,166,0.6); }
+
+.isy-badge-text { color: #93c5fd; font-weight: 700; }
+.isy-divider    { color: rgba(255,255,255,0.35); }
+
+/* ─── Watch Page ─── */
+.yt-watch-body {
+  display: flex;
+  gap: 24px;
+  padding: 24px 24px 48px;
+  align-items: flex-start;
+}
+
+.yt-player-col { flex: 1; min-width: 0; }
+
+.yt-player-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.yt-player-frame video { width: 100%; height: 100%; display: block; object-fit: contain; }
+
+/* ISY 영상 위 라벨 */
+.yt-player-label {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.72);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+  animation: isy-fadein 0.2s ease-out;
+}
+.yt-player-label[hidden] { display: none; }
+
+/* 영상 아래 정보 */
+.yt-video-info { margin-top: 12px; }
+
+.yt-video-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+
+.yt-video-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+.yt-channel-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.yt-channel-info { min-width: 0; flex: 1; }
+.yt-channel-name { font-size: 16px; font-weight: 600; color: var(--text); }
+.yt-channel-subs { font-size: 13px; color: var(--subtext); margin-top: 2px; }
+
+.yt-subscribe-btn {
+  padding: 0 16px;
+  height: 36px;
+  border-radius: 18px;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.yt-subscribe-btn:hover { background: #d9d9d9; }
+
+.yt-action-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.yt-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--text);
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.yt-action-btn:hover { background: var(--surface-hover); }
+.yt-action-btn.split-left  { border-radius: 18px 0 0 18px; border-right: 1px solid var(--border); padding-right: 12px; }
+.yt-action-btn.split-right { border-radius: 0 18px 18px 0; padding-left: 12px; }
+
+/* 추천 영상 칼럼 */
+.yt-related-col { width: 402px; flex-shrink: 0; }
+
+.yt-related-card {
+  display: flex;
+  gap: 8px;
+  padding: 8px 0;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 8px;
+}
+.yt-related-card:hover .yt-related-thumb { opacity: 0.85; }
+
+.yt-related-thumb {
+  width: 168px;
+  aspect-ratio: 16/9;
+  background: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+.yt-related-thumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.yt-related-info { flex: 1; min-width: 0; }
+.yt-related-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.yt-related-channel { font-size: 12px; color: var(--subtext); margin-bottom: 2px; }
+.yt-related-isy     { font-size: 12px; color: var(--subtext); display: flex; align-items: center; gap: 4px; }
+
+/* ─── Upload (Studio 스타일) ─── */
+.yt-studio-layout {
+  display: flex;
+  min-height: calc(100vh - 56px);
+}
+
+.yt-studio-sidebar {
+  width: 64px;
+  background: var(--header-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.yt-studio-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 64px;
+  cursor: pointer;
+  color: var(--subtext);
+  text-decoration: none;
+  font-size: 10px;
+  transition: color 0.15s;
+}
+.yt-studio-nav-item:hover  { color: var(--text); }
+.yt-studio-nav-item.active { color: var(--text); }
+
+.yt-studio-main {
+  flex: 1;
+  min-width: 0;
+  padding: 32px 40px 60px;
+  max-width: 840px;
+}
+
+.yt-studio-page-title {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0 0 28px;
+}
+
+/* 드롭존 */
+.yt-drop-zone {
+  display: block;
+  border: 2px dashed #3d3d3d;
+  border-radius: 6px;
+  padding: 80px 40px;
+  text-align: center;
+  background: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.yt-drop-zone:hover        { border-color: #3ea6ff; background: rgba(62,166,255,0.04); }
+.yt-drop-zone:focus-within { outline: 2px solid rgba(62,166,255,0.4); outline-offset: 2px; border-color: #3ea6ff; }
+.yt-drop-zone input        { position: absolute; width: 1px; height: 1px; opacity: 0; }
+
+.yt-drop-icon  { color: #3ea6ff; margin-bottom: 16px; }
+.yt-drop-title { font-size: 18px; color: var(--text); font-weight: 400; margin-bottom: 8px; }
+.yt-drop-sub   { font-size: 14px; color: var(--subtext); line-height: 1.5; }
+.yt-drop-file  { margin-top: 12px; font-size: 14px; color: #3ea6ff; font-weight: 500; }
+
+.yt-select-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: #3ea6ff;
+  color: #0f0f0f;
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.yt-select-btn:hover { background: #5eb8ff; }
+
+.yt-reanalyze-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 2px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.yt-reanalyze-btn:hover    { background: var(--surface-hover); }
+.yt-reanalyze-btn:disabled { opacity: 0.5; cursor: wait; }
+
+/* 분석 상태 */
+.yt-status {
+  margin-top: 20px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  background: var(--surface);
+  font-size: 14px;
+  color: var(--subtext);
+  border: 1px solid var(--border);
+}
+.yt-status.busy  { color: #3ea6ff; background: rgba(62,166,255,0.08); border-color: rgba(62,166,255,0.3); animation: isy-pulse 1.4s ease-in-out infinite; }
+.yt-status.done  { color: var(--low-dim); background: var(--low-bg); border-color: var(--low-border); }
+.yt-status.error { color: var(--high-dim); background: var(--high-bg); border-color: var(--high-border); }
+
+/* 분석 결과 */
+.yt-result-card { margin-top: 24px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; animation: isy-fadein 0.3s ease-out; }
+.yt-result-card.hidden { display: none; }
+
+.yt-result-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 16px;
+  font-weight: 600;
+}
+.level-high      .yt-result-header { background: var(--high-bg);      border-color: var(--high-border);      color: var(--high-dim);      }
+.level-uncertain .yt-result-header { background: var(--uncertain-bg);  border-color: var(--uncertain-border); color: var(--uncertain-dim); }
+.level-low       .yt-result-header { background: var(--low-bg);       border-color: var(--low-border);       color: var(--low-dim);       }
+
+.yt-result-body { padding: 20px; display: grid; gap: 16px; }
+
+.yt-score       { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.yt-score-pct   { font-size: 48px; font-weight: 700; line-height: 1; }
+.yt-score-label { font-size: 13px; color: var(--subtext); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.level-high      .yt-score-pct { color: var(--high);      }
+.level-uncertain .yt-score-pct { color: var(--uncertain);  }
+.level-low       .yt-score-pct { color: var(--low);        }
+
+.yt-gauge-header { display: flex; justify-content: space-between; font-size: 11px; color: var(--subtext); font-weight: 600; margin-bottom: 6px; }
+.yt-gauge-track  { height: 6px; background: var(--surface); border-radius: 3px; overflow: hidden; border: 1px solid var(--border); }
+.yt-gauge-fill   { height: 100%; border-radius: 3px; transition: width 0.6s cubic-bezier(0.22,1,0.36,1); }
+
+.level-high      .yt-gauge-fill { background: linear-gradient(90deg,#F59E0B,#EA580C); }
+.level-uncertain .yt-gauge-fill { background: linear-gradient(90deg,#FBBF24,#CA8A04); }
+.level-low       .yt-gauge-fill { background: linear-gradient(90deg,#10B981,#34D399); }
+
+.yt-result-note { font-size: 13px; color: var(--subtext); line-height: 1.5; margin: 0; word-break: keep-all; }
+
+.yt-watch-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 20px;
+  border-radius: 2px;
+  background: #ff0000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s;
+  width: fit-content;
+}
+.yt-watch-link:hover { background: #cc0000; }
+
+/* ─── Animations ─── */
+@keyframes isy-fadein {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes isy-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1280px) {
+  .yt-related-col { width: 340px; }
+}
+
+@media (max-width: 1100px) {
+  .yt-related-col { display: none; }
+}
+
+@media (max-width: 860px) {
+  .yt-sidebar     { display: none; }
+  .yt-main        { padding: 16px; }
+  .yt-watch-body  { padding: 16px; }
+  .yt-studio-main { padding: 20px 16px; }
+}
+
+@media (max-width: 560px) {
+  .yt-header-center { display: none; }
+  .yt-logo-isy      { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

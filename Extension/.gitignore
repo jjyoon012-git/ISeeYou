@@ -1,0 +1,43 @@
+# Python caches / local runtime artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+
+# ML model artifacts
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.joblib
+video/checkpoints_*/*.pt
+video/checkpoints_*/*.pth
+video/checkpoints_*/history.json
+video/checkpoints_*/last.pt
+video/__MACOSX/
+
+# Logs / temporary files
+*.log
+*.tmp
+*.temp
+demo_platform/uploads/
+demo_platform/disclosures.json
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# AI assistant context files
+CLAUDE.md
+.claude/

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-text">
+        <h1>
+          <span class="brand-mark">ISY</span>
+          <span class="brand-full">I See You</span>
+        </h1>
+        <p>AI 생성 가능성을 빠르게 검토합니다.</p>
+      </div>
+      <div class="brand-logo-stage" aria-hidden="true">
+        <img src="../icons/iseeyou.png" alt="" class="brand-logo" width="126" height="84" decoding="async">
+      </div>
+    </header>
+
+    <section id="adapter-info" class="adapter-info" aria-label="현재 사이트">
+      <span class="adapter-label">현재 사이트</span>
+      <strong id="adapter-name">감지 중...</strong>
+    </section>
+
+    <!-- IDLE: 분석 시작 카드 -->
+    <section id="start-card" class="card start-card">
+      <!-- 일반 사이트 / YouTube watch — 전체 분석 + 보조 액션 -->
+      <div id="start-default" class="start-variant">
+        <button id="analyze-all-btn" class="primary primary-action" aria-label="페이지의 모든 콘텐츠 분석">
+          <span class="action-title">전체 콘텐츠 분석</span>
+          <span class="action-sub">페이지에서 찾은 모든 콘텐츠를 분석합니다</span>
+        </button>
+        <div class="sub-actions">
+          <button id="analyze-selected-btn" class="ghost" aria-label="선택한 콘텐츠만 분석">
+            <span class="sub-icon" aria-hidden="true">◧</span>
+            <span>선택해서 분석</span>
+          </button>
+          <button id="analyze-current-video-btn" class="ghost hidden" aria-label="현재 영상만 분석">
+            <span class="sub-icon" aria-hidden="true">▶</span>
+            <span>현재 영상만</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- YouTube Shorts — 현재 영상만 단일 액션 -->
+      <div id="start-shorts" class="start-variant hidden">
+        <button id="analyze-shorts-video-btn" class="primary primary-action" aria-label="현재 Shorts 영상 분석">
+          <span class="action-title">현재 영상 분석</span>
+          <span class="action-sub">지금 재생 중인 Shorts 영상을 검토합니다</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- RUNNING: 진행 카드 -->
+    <section id="progress-card" class="card progress-card hidden" aria-live="polite">
+      <div class="progress-head">
+        <span class="watching-dot" aria-hidden="true"></span>
+        <span id="progress-label" class="progress-label">분석 중</span>
+        <span id="progress-count" class="progress-count">0 / 0</span>
+      </div>
+      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <button id="stop-analysis-btn" class="ghost-destructive" aria-label="자동 분석 중단">
+        분석 중단
+      </button>
+    </section>
+
+    <!-- DONE: 결과 요약 (시작 카드와 함께 표시) -->
+    <section id="results-card" class="card results-card hidden" aria-label="분석 결과 요약">
+      <div class="results-row">
+        <button id="focus-high-btn" class="result-item high-item" type="button" aria-label="AI 가능성 높은 콘텐츠로 이동">
+          <span class="result-label">높음</span>
+          <span id="high-count" class="result-count high-count">0</span>
+        </button>
+        <div class="result-divider"></div>
+        <button id="focus-low-btn" class="result-item low-item" type="button" aria-label="AI 가능성 낮은 콘텐츠로 이동">
+          <span class="result-label">낮음</span>
+          <span id="low-count" class="result-count low-count">0</span>
+        </button>
+        <div class="result-divider"></div>
+        <button id="focus-failed-btn" class="result-item failed-item" type="button" aria-label="분석 실패 콘텐츠로 이동">
+          <span class="result-label">실패</span>
+          <span id="failed-count" class="result-count failed-count">0</span>
+        </button>
+      </div>
+      <div class="results-footer">
+        <button id="clear-results-btn" class="ghost" aria-label="화면의 분석 라벨 숨기기">
+          라벨 숨기기
+        </button>
+        <button id="retry-failed-btn" class="link-action hidden" aria-label="분석 실패 항목 재시도">
+          실패 항목 재시도
+        </button>
+      </div>
+    </section>
+
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
