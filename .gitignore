@@ -1,0 +1,60 @@
+# Dependencies
+**/node_modules/
+
+# Frontend build/cache
+UI/dist/
+UI/.vite/
+**/.vite/
+
+# Python cache
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/.pytest_cache/
+
+# Logs and local runtime output
+**/*.log
+**/*.err.log
+**/front-dev-*.log
+**/backend-*.log
+**/tmp/
+**/temp/
+
+# Environment and secrets
+.env
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Model weights and binary artifacts
+**/*.pt
+**/*.pth
+**/*.ckpt
+**/*.pkl
+**/*.joblib
+**/*.safetensors
+**/*.onnx
+**/*.bin
+**/*.zip
+**/*.tar
+**/*.tar.gz
+**/*.7z
+
+# Local datasets and archived candidates
+_legacy_candidates/
+_archive/
+dataset/
+datasets/
+data/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
