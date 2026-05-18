@@ -5303,3 +5303,161 @@ li,
 .result-detail-disclosure[open] > summary::after {
   content: '-';
 }
+
+
+/* Clickable disclosure controls */
+.info-disclosure summary {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.info-disclosure summary:focus-visible,
+.result-detail-disclosure > summary:focus-visible,
+button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--tone) 70%, white);
+  outline-offset: 3px;
+}
+
+.info-disclosure summary:hover {
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--tone) 20%, rgba(0, 0, 0, 0.22));
+}
+
+.info-disclosure[open] summary {
+  color: #111827;
+  border-color: color-mix(in srgb, var(--tone) 66%, white);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--tone) 80%, white), color-mix(in srgb, var(--tone) 48%, white));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tone) 22%, transparent), 0 12px 24px rgba(0, 0, 0, 0.24);
+}
+
+.result-detail-disclosure {
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.result-detail-disclosure > summary {
+  min-height: 54px;
+  padding: 0 0 0 16px;
+  border: 1px solid color-mix(in srgb, var(--tone) 24%, var(--line));
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--tone) 10%, rgba(255, 255, 255, 0.06)), rgba(255, 255, 255, 0.03));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.result-detail-disclosure > summary::before {
+  content: '\D074\B9AD\D574\C11C \BCF4\AE30';
+  order: 1;
+  margin-left: auto;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--tone) 28%, var(--line));
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.result-detail-disclosure > summary::after {
+  order: 2;
+  margin-right: 12px;
+  margin-left: 8px;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.result-detail-disclosure > summary:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--tone) 58%, var(--line));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--tone) 20%, rgba(255, 255, 255, 0.08)), rgba(255, 255, 255, 0.04));
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--tone) 18%, rgba(0, 0, 0, 0.24));
+}
+
+.result-detail-disclosure > summary:hover::after {
+  transform: scale(1.08);
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--tone) 48%, var(--line));
+}
+
+.result-detail-disclosure[open] {
+  border-color: color-mix(in srgb, var(--tone) 42%, var(--line));
+  background: color-mix(in srgb, var(--tone) 7%, rgba(255, 255, 255, 0.025));
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+}
+
+.result-detail-disclosure[open] > summary {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--tone) 64%, var(--line));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--tone) 28%, rgba(255, 255, 255, 0.08)), rgba(255, 255, 255, 0.045));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tone) 16%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.result-detail-disclosure[open] > summary::before {
+  content: '\C5F4\B9BC';
+  color: color-mix(in srgb, var(--tone) 72%, white);
+  border-color: color-mix(in srgb, var(--tone) 56%, var(--line));
+  background: color-mix(in srgb, var(--tone) 16%, rgba(255, 255, 255, 0.08));
+}
+
+.result-detail-disclosure[open] > summary::after {
+  color: #111827;
+  border-color: color-mix(in srgb, var(--tone) 68%, white);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--tone) 86%, white), color-mix(in srgb, var(--tone) 52%, white));
+}
+
+.primary-cta,
+.secondary-cta,
+.selector-pill,
+.segmented button,
+.upload-mode-switch button {
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.primary-cta:hover:not(:disabled),
+.secondary-cta:hover:not(:disabled),
+.selector-pill:hover,
+.segmented button:hover,
+.upload-mode-switch button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+.primary-cta:active:not(:disabled),
+.secondary-cta:active:not(:disabled),
+.selector-pill:active,
+.segmented button:active,
+.upload-mode-switch button:active,
+.result-detail-disclosure > summary:active,
+.info-disclosure summary:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.selector-pill.is-active,
+.segmented button.is-active,
+.upload-mode-switch button.is-active {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--tone) 18%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
